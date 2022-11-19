@@ -40,6 +40,7 @@ export default function IngredientsSelector({
           aria-describedby={id}
           onClick={handleClick}
           startIcon={<AddIcon />}
+          color="success"
         >
           <span>Add Ingredients</span>
         </Button>
