@@ -34,8 +34,8 @@ export default function RelevantRecipes({ selectedIngredients }) {
           <CardActionArea>
             <CardMedia
               component="img"
-              height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
+              height="240"
+              image={recipe.imageUrl}
               alt="green iguana"
             />
             <CardContent>
@@ -62,4 +62,6 @@ const RecipesBox = styled(Box)`
   flex-wrap: wrap;
   gap: 28px;
   justify-content: center;
+  margin-top: 28px;
+  margin-bottom: 60px;
 `;

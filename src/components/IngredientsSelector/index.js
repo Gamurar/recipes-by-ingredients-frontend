@@ -34,7 +34,7 @@ export default function IngredientsSelector({
 
   return (
     <React.Fragment>
-      <IngredientsBox sx={{ fontSize: 14, height: 300 }}>
+      <IngredientsBox sx={{ fontSize: 14, height: 250 }}>
         <Button
           variant="contained"
           aria-describedby={id}
