@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Container } from "@mui/material";
+import SearchBar from "./components/SearchBar";
+import styled from "styled-components";
 
-function App() {
+export default function App() {
+  const [options, setOptions] = useState([]);
+
+  async function fetchIngridients() {
+    const response = await fetch("http://localhost:3000/ingredients");
+    const items = await response.json();
+    const listOptions = items.map((item) => ({
+      label: item,
+      id: item.toLowerCase().replaceAll(" ", "-"),
+    }));
+    setOptions(listOptions);
+  }
+
+  useEffect(() => {
+    fetchIngridients();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CenteredContainer maxWidth="sm">
+      <SearchBar options={options} />
+    </CenteredContainer>
   );
 }
 
-export default App;
+const CenteredContainer = styled(Container)`
+  margin-top: 50px;
+`;
