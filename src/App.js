@@ -21,7 +21,7 @@ export default function App() {
   }, []);
 
   return (
-    <CenteredContainer maxWidth="sm">
+    <CenteredContainer maxWidth="md">
       <SearchBar options={options} />
     </CenteredContainer>
   );
