@@ -15,9 +15,10 @@ export default function RelevantRecipes({ selectedIngredients }) {
   const fetchRecipes = async () => {
     const ingredientsQuery = selectedIngredients
       .map((ingredient) => ingredient.label)
-      .toString();
+      .join("|");
     const response = await fetch(
-      "http://localhost:3000/recipes?ingredients=" + ingredientsQuery,
+      "http://localhost:3000/recipes?ingredients=" +
+        encodeURIComponent(ingredientsQuery),
     );
     const items = await response.json();
     setRecipes(items);
