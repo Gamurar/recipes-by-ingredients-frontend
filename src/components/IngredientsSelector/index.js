@@ -9,7 +9,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import Autocomplete, { autocompleteClasses } from "@mui/material/Autocomplete";
 import { Stack, Chip, Button, InputBase, Box } from "@mui/material";
 
-export default function SearchBar({ options }) {
+export default function IngredientsSelector({ options }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [value, setValue] = React.useState([]);
   const [pendingValue, setPendingValue] = React.useState([]);

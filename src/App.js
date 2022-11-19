@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
-import SearchBar from "./components/SearchBar";
+import IngredientsSelector from "./components/IngredientsSelector";
 import styled from "styled-components";
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <CenteredContainer maxWidth="md">
-      <SearchBar options={options} />
+      <IngredientsSelector options={options} />
     </CenteredContainer>
   );
 }
