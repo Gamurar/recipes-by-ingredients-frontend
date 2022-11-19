@@ -31,7 +31,13 @@ export default function RelevantRecipes({ selectedIngredients }) {
   return (
     <RecipesBox>
       {recipes.map((recipe) => (
-        <Card sx={{ maxWidth: 345 }} key={recipe.id}>
+        <Card
+          sx={{ maxWidth: 345 }}
+          key={recipe.id}
+          onClick={() =>
+            window.open(recipe.link, "_blank", "noopener,noreferrer")
+          }
+        >
           <CardActionArea>
             <CardMedia
               component="img"
