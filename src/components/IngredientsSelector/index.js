@@ -9,19 +9,20 @@ import DoneIcon from "@mui/icons-material/Done";
 import Autocomplete, { autocompleteClasses } from "@mui/material/Autocomplete";
 import { Stack, Chip, Button, InputBase, Box } from "@mui/material";
 
-export default function IngredientsSelector({ options }) {
+export default function IngredientsSelector({
+  options,
+  selectedIngredients,
+  setSelectedIngredients,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [value, setValue] = React.useState([]);
-  const [pendingValue, setPendingValue] = React.useState([]);
   const theme = useTheme();
 
   const handleClick = (event) => {
-    setPendingValue(value);
+    setSelectedIngredients(selectedIngredients);
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setValue(pendingValue);
     if (anchorEl) {
       anchorEl.focus();
     }
@@ -33,7 +34,7 @@ export default function IngredientsSelector({ options }) {
 
   return (
     <React.Fragment>
-      <IngredientsBox sx={{ fontSize: 14 }}>
+      <IngredientsBox sx={{ fontSize: 14, height: 300 }}>
         <Button
           variant="contained"
           aria-describedby={id}
@@ -43,7 +44,7 @@ export default function IngredientsSelector({ options }) {
           <span>Add Ingredients</span>
         </Button>
         <ChipsContainer>
-          {value.map((label) => (
+          {selectedIngredients.map((label) => (
             <Chip key={label.label} color="primary" label={label.label} />
           ))}
         </ChipsContainer>
@@ -75,7 +76,7 @@ export default function IngredientsSelector({ options }) {
                   handleClose();
                 }
               }}
-              value={pendingValue}
+              value={selectedIngredients}
               onChange={(event, newValue, reason) => {
                 if (
                   event.type === "keydown" &&
@@ -84,7 +85,7 @@ export default function IngredientsSelector({ options }) {
                 ) {
                   return;
                 }
-                setPendingValue(newValue);
+                setSelectedIngredients(newValue);
               }}
               disableCloseOnSelect
               PopperComponent={PopperComponent}
@@ -123,14 +124,7 @@ export default function IngredientsSelector({ options }) {
                   />
                 </li>
               )}
-              options={[...options].sort((a, b) => {
-                // Display the selected labels first.
-                let ai = value.indexOf(a);
-                ai = ai === -1 ? value.length + options.indexOf(a) : ai;
-                let bi = value.indexOf(b);
-                bi = bi === -1 ? value.length + options.indexOf(b) : bi;
-                return ai - bi;
-              })}
+              options={[...options]}
               getOptionLabel={(option) => option.label}
               renderInput={(params) => (
                 <StyledInput

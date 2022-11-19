@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import IngredientsSelector from "./components/IngredientsSelector";
+import RelevantRecipes from "./components/RelevantRecipes";
 import styled from "styled-components";
 
 export default function App() {
   const [options, setOptions] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   async function fetchIngridients() {
     const response = await fetch("http://localhost:3000/ingredients");
@@ -22,7 +24,12 @@ export default function App() {
 
   return (
     <CenteredContainer maxWidth="md">
-      <IngredientsSelector options={options} />
+      <IngredientsSelector
+        options={options}
+        selectedIngredients={selectedIngredients}
+        setSelectedIngredients={setSelectedIngredients}
+      />
+      <RelevantRecipes selectedIngredients={selectedIngredients} />
     </CenteredContainer>
   );
 }
